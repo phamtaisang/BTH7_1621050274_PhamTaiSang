@@ -1,0 +1,31 @@
+﻿@using BTH7_1621050274_PhamTaiSang.Models;
+@Model List<tbl_khoahoc>
+    @{
+        ViewBag.Title = "test";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Khoa học</h2>
+    <a href="@Url.Action("ThemKhoaHoc","TrangChu")">Them</a>
+    <table>
+
+
+        <tr>
+            <th>ID</th>
+            <th>Tên khoa</th>
+            <th>Thời gian</th>
+            <th>Ghi chú</th>
+            <th>Số sinh viên</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Makh;</td>
+            <td>@item.Tenkhoa;</td>
+            <td>@item.Thoigian;</td>
+            <td>@item.Ghichu;</td>
+            <td>@item.tbl_sinhvien.Count</td>
+        </tr>
+         }
+    </table>

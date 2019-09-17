@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h5 class="pt-3 pl-2">DANH SÁCH SINH VIÊN</h5>
+@{ int dem = 0; }
+@foreach (var item in ViewBag.sinhvien)
+{
+    dem++;
+}
+<h3><a href="#">Thêm sinh viên </a></h3>
+<!-- 1. Đoạn cần thêm -->
+
+@using (Html.BeginForm("TimKiem", "SinhVien", FormMethod.Get))
+
+{
+
+<p>
+
+    Title: @Html.TextBox("SearchString") <input type="submit" value="Tìm kiếm" />
+</p>
+
+}
+
+<!-- Kết thúc -->
+<p class="text-lg-right pr-2" style="color:darkgoldenrod; font-size:12px; font-weight:bold;">
+    Tổng số bản ghi : @{ Write(dem); } </pclass="pt-3>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Mã sinh viên</th>
+            <th>Tên SV</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Chức năng</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @{
+            int i = 0;
+        }
+        @foreach (var item in ViewBag.sinhvien)
+        {
+            var url = "/sinh-vien/" + item.Tensv + "-" + item.Masv;
+            var urlEdit = "/sua-sinh-vien/" + item.Tensv + "-" + item.Masv;
+            var urlDel = "/xoa-sinh-vien/" + item.Tensv + "-" + item.Masv;
+            <tr>
+                <td>@{Write(i++);}</td>
+                <td>@item.Masv</td>
+                <td>@item.Tensv</td>
+                <td>@item.Namsinh</td>
+                <td>
+                    @if (@item.Gioitinh == true)
+                    {
+                        Write("Nữ");
+                    }
+                    else
+                    {
+                        Write("Nam");
+                    }
+
+                </td>
+
+                <td><a href="@url" style="color:red">View</a></td>
+                <td><a href="@urlEdit" style="color:red">Edit</a></td>
+                <td><a href="@urlDel" style="color:red">Delete</a></td>
+            </tr>
+        }
+
+    </table>

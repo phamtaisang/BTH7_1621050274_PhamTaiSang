@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table>
+    <tr>
+
+        <th>Mã sinh viên</th>
+        <th>Tên SV</th>
+        <th>Ngày sinh</th>
+        <th>Giới tính</th>
+
+    </tr>
+    
+    @foreach (var item in ViewBag.show)
+    {
+    
+        <tr>
+            <td>@item.Masv</td>
+            <td>@item.Tensv</td>
+            <td>@item.Namsinh</td>
+            <td>
+                @if (@item.Gioitinh == true)
+                {
+                    Write("Nữ");
+                }
+                else
+                {
+                    Write("Nam");
+                }
+
+            </td>
+        </tr>
+    }
+       
+</table>

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Example </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<script type="~/Assets/text/javascript" src="vendor/bootstrap.js"></script>*@
+    @*<link href="~/Assets/vendor/bootstrap.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Assets/vendor/font-awesome.css">
+    <link href="~/Assets/1.css" rel="stylesheet" />
+    <script src="~/Assets/1.js"></script>
+</head>
+<body>
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+        <span class="w3-bar-item w3-right">Logo</span>
+    </div>
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+        <br>
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+
+                <img src="~/Assets/AD.png" class="w3-circle w3-margin-right" style="width:46px" />
+
+            </div>
+            <div class="w3-col s8 w3-bar">
+                <span>Welcome <strong></strong></span><br>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>Danh sách chức năng</h5>
+        </div>
+        @{ var urlsv = "/sinh-vien/";
+            var urlhome = "/trang-chu/";
+            var urlgv = "/giang-vien/";
+            var urlDA = "/do-an/";
+        }
+        <div class="w3-bar-block">
+            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+            <a href="@urlhome" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Trang chủ</a>
+            <a href="@urlsv" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Hồ sơ sinh viên </a>
+            <a href="@urlgv" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Hồ sơ giảng viên </a>
+            <a href="@urlDA" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Hồ sơ đồ án </a>
+            @*<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Quản lý tài khoản </a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Quản lý danh mục </a>*@
+            <br>
+        </div>
+    </nav>
+    <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+        @RenderBody()
+    </div>
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+                overlayBg.style.display = "none";
+            } else {
+                mySidebar.style.display = 'block';
+                overlayBg.style.display = "block";
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+            overlayBg.style.display = "none";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="~/Assets/text/javascript" src="1.js"></script>
+</body>
+</html>

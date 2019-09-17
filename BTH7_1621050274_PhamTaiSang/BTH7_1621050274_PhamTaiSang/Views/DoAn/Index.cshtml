@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="pt-3 pl-2">DANH SÁCH ĐỒ ÁN</h5>
+@{ int dem = 0; }
+@foreach (var item in ViewBag.DoAn)
+{
+    dem++;
+}
+
+<p class="text-lg-right pr-2" style="color:darkgoldenrod; font-size:12px; font-weight:bold;">
+    Tổng số bản ghi : @{ Write(dem); } </pclass="pt-3>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Mã sinh viên</th>
+            <th>Tên đồ án</th>
+            <th>GVHD</th>
+            <th>GVPB</th>
+            <th>linhvuc</th>
+            <th>Diem</th>
+            <th>Namtn</th>
+        </tr>
+        @{
+            int i = 0;
+        }
+        @foreach (var item in ViewBag.DoAn)
+        {
+
+            <tr>
+                <td>@{Write(i++);}</td>
+                <td>@item.Masv</td>
+                <td>@item.Tenda</td>
+                <td>@item.tbl_giangvien.Tengv</td>
+                <td>@item.tbl_giangvien1.Tengv</td>
+                <td>@item.tbl_linhvuc.Tenlv</td>
+                <td>@item.Diem</td>
+                <td>@item.Namtn</td>
+         
+            </tr>
+        }
+
+    </table>
+

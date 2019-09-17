@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "chitiet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>THÔNG TIN CHI TIẾT SINH VIÊN</h2>
+
+@foreach(var i in ViewBag.sinhvien)
+{
+<div class="chitietsv">
+    <p>Mã sinh viên là : @i.Masv</p>
+    <p>Tên sinh viên là :@i.Tensv</p>
+    <p>Năm sinh : @i.Namsinh</p>
+    <p>Giới tính : @i.Khoa</p>
+    <p>Khoa : @i.tbl_khoahoc.Tenkhoa</p>
+    <p>Chuyên ngành : @i.tbl_chuyennganh.Tencn</p>
+    <p>Email : @i.Email</p>
+    <p>Điện thoại :@i.Dienthoai</p>
+    <p>Địa chỉ : @i.Diachi</p>
+    <p>Ghi chú : @i.Ghichu</p>
+</div>
+}

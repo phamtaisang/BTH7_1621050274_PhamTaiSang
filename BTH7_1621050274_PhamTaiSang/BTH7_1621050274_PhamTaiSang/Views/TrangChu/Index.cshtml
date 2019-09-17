@@ -1,0 +1,259 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@ViewBag.name1
+<!-- Header -->
+<header class="w3-container" style="padding-top:22px">
+    <h5><i class="fa fa-dashboard"></i>TỔNG DỮ LIỆU HỆ THỐNG</h5>
+</header>
+
+
+<div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+        <div class="w3-container w3-red w3-padding-16">
+            <div class="w3-left"><i class="fa fa-user w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>@Html.Raw(ViewBag.demsv)</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Hồ sơ sinh viên </h4>
+        </div>
+    </div>
+    <div class="w3-quarter">
+        <div class="w3-container w3-blue w3-padding-16">
+            <div class="w3-left"><i class="fa fa-user w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>@Html.Raw(ViewBag.demgv)</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Hồ sơ giảng viên </h4>
+        </div>
+    </div>
+    <div class="w3-quarter">
+        <div class="w3-container w3-green w3-padding-16">
+            <div class="w3-left"><i class="fa fa-graduation-cap w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>@Html.Raw(ViewBag.demda)</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Đồ án tốt nghiệp </h4>
+        </div>
+    </div>
+    <div class="w3-quarter">
+        <div class="w3-container w3-pink w3-padding-16">
+            <div class="w3-left"><i class="fa fa-adjust w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3> @Html.Raw(ViewBag.demcn)</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Số chuyên ngành </h4>
+        </div>
+    </div>
+</div>
+
+<div>
+    <header class="w3-container" style="padding-top:22px">
+        <h5><i class="fa fa-bar-chart"></i>THỐNG KÊ SINH VIÊN TỪNG CHUYÊN NGÀNH</h5>
+    </header>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Chuyên ngành</th>
+            <th>Số sinh viên </th>
+            <th>Chi tiết</th>
+        </tr>
+        @foreach (var item in ViewBag.nganh)
+        {
+            var url = "/chuyen-nganh/" + item.Tencn + "-" + item.Macn;
+            <tr>
+
+                <td>@item.Macn</td>
+                <td>@item.Tencn</td>
+                <td>@item.tbl_sinhvien.Count</td>
+                <td><a href="@url"><i class="fa fa-search"></i>Danh sách</a></td>
+
+
+            </tr>
+        }
+    </table>
+
+
+
+    <div id="show_DoAn">
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>MaSV</th>
+                <th>TenDoAn (Đồ án có điểm nhỏ hơn 7)</th>
+                <th>Giáo viên HD</th>
+                <th>Lĩnh vực</th>
+                <th>Điểm</th>
+
+            </tr>
+            @{int dem7 = 0, dem8 = 0, dem9 = 0, dem10 = 0, stt = 0; }
+
+
+            @foreach (var i in ViewBag.doan)
+            {
+
+                stt++;
+                if (i.Diem < 7 || i.Diem == 7)
+                {
+                    dem7++;
+                    <div class="showdiem7">
+
+                        <tr>
+                            <td>@stt</td>
+                            <td>@i.Masv</td>
+                            <td>@i.Tenda</td>
+                            <td>@i.tbl_giangvien.Tengv</td>
+                            <td>@i.tbl_linhvuc.Tenlv</td>
+                            <td>@i.Diem</td>
+                        </tr>
+
+                    </div>
+
+
+                }
+                else if (i.Diem > 7 || i.Diem == 8)
+                {
+                    dem8++;
+
+                }
+                else if (i.Diem > 8 || i.Diem == 9)
+                {
+                    dem9++;
+                }
+                else
+                {
+                    dem10++;
+                }
+
+            }
+        </table>
+    </div>
+    <div id="show_DoAn_8">
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>MaSV</th>
+                <th>TenDoAn (Đồ án có điểm từ 7đ đén 8đ )</th>
+                <th>Giáo viên HD</th>
+                <th>Lĩnh vực</th>
+                <th>Điểm</th>
+
+            </tr>
+            @{ int st = 0;}
+            @foreach (var i in ViewBag.doan)
+
+            {
+                if (i.Diem < 7 || i.Diem == 7)
+                {
+
+                }
+                else if (i.Diem < 8 || i.Diem == 8)
+                {
+                    st++;
+                    <tr>
+                        <td>@st</td>
+                        <td>@i.Masv</td>
+                        <td>@i.Tenda</td>
+                        <td>@i.tbl_giangvien.Tengv</td>
+                        <td>@i.tbl_linhvuc.Tenlv</td>
+                        <td>@i.Diem</td>
+
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div id="show_DoAn_9">
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>MaSV</th>
+                <th>TenDoAn (Đồ án có điểm từ 8đ đến 9đ )</th>
+                <th>Giáo viên HD</th>
+                <th>Lĩnh vực</th>
+                <th>Điểm</th>
+
+            </tr>
+            @{ int st1 = 0;}
+            @foreach (var i in ViewBag.doan)
+            {
+                if (i.Diem < 7 || i.Diem == 7)
+                {
+
+                }
+                else if (i.Diem < 8 || i.Diem == 8)
+                {
+
+                }
+                else if (i.Diem < 9 || i.Diem == 9)
+                {
+                    st1++;
+                    <tr>
+                        <td>@st1</td>
+                        <td>@i.Masv</td>
+                        <td>@i.Tenda</td>
+                        <td>@i.tbl_giangvien.Tengv</td>
+                        <td>@i.tbl_linhvuc.Tenlv</td>
+                        <td>@i.Diem</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div id="show_DoAn_10">
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>MaSV</th>
+                <th>TenDoAn (Đồ án có điểm từ 9đ đến 10đ )</th>
+                <th>Giáo viên HD</th>
+                <th>Lĩnh vực</th>
+                <th>Điểm</th>
+
+            </tr>
+            @{ int st2 = 0;}
+            @foreach (var i in ViewBag.doan)
+            {
+                if (i.Diem > 9 || i.Diem == 10)
+                {
+                    st2++;
+                    <tr>
+                        <td>@st2</td>
+                        <td>@i.Masv</td>
+                        <td>@i.Tenda</td>
+                        <td>@i.tbl_giangvien.Tengv</td>
+                        <td>@i.tbl_linhvuc.Tenlv</td>
+                        <td>@i.Diem</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <header class="w3-container" style="padding-top:22px">
+        <h5><i class="fa fa-bar-chart"></i>THỐNG KÊ DỒ ÁN THEO ĐIỂM</h5>
+    </header>
+
+    <div class="w3-grey" style="width:97%;margin:auto;">
+        <div class="w3-container w3-left w3-padding w3-green" style="width:100%">Đồ án có điểm < = 7 ........ <span style="color:burlywood">@dem7  đồ án</span> <div style="cursor:pointer;color:black;" class="btn btnClick">Xem</div> </div>
+    </div>
+
+    <div class="w3-grey" style="width:97%;margin:auto;">
+        <div class="w3-container w3-left w3-padding w3-red" style="width:100%">Đồ án có điểm từ 7.1 đến 8.0 ........<span style="color:burlywood">@st  đồ án</span> <div style="cursor:pointer;color:black;" class="btn btnClick1">Xem</div> </div>
+    </div>
+
+    <div class="w3-grey" style="width:97%;margin:auto;">
+        <div class="w3-container w3-left w3-padding w3-blue" style="width:100%">Đồ án có điểm từ 8.1 đến 9.0 ........ <span style="color:burlywood">@st1 đồ án</span><div style="cursor:pointer;color:black;" class="btn btnClick2">Xem</div> </div>
+    </div>
+
+    <div class="w3-grey" style="width:97%;margin:auto;">
+        <div class="w3-container w3-left w3-padding w3-blue-gray" style="width:100%">Đồ án có điểm từ 9.0 đến 10 ........ <span style="color:burlywood">@st2  đồ án</span> <div style="cursor:pointer;color:black;" class="btn btnClick3">Xem</div> </div>
+    </div>
+
+</div>
+

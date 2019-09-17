@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "getDanhsach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="pt-3 pl-2">DANH SÁCH SINH VIÊN THEO CHUYÊN NGÀNH</h5>
+<p class="text-lg-right pr-2" style="color:darkgoldenrod; font-size:12px; font-weight:bold;">Tổng số bản ghi : @ViewBag.dem </pclass="pt-3>
+<table>
+    <tr>
+        <th>STT</th>
+        <th>Mã sinh viên</th>
+        <th>Tên SV</th>
+        <th>Ngày sinh</th>
+        <th>Giới tính</th>
+        <th>Khoa</th>
+        <th>Chuyên ngành</th>
+        <th>Email</th>
+        <th>Điện thoại</th>
+        <th>Địa chỉ</th>
+    </tr>
+    @{ 
+        int i=0;
+    }
+    @foreach (var item in ViewBag.sinhvien)
+    {
+
+    <tr>
+        <td>@{Write(i++);}</td>
+        <td>@item.Masv</td>
+        <td>@item.Tensv</td>
+        <td>@item.Namsinh</td>
+        <td>
+           @if (@item.Gioitinh == true)
+           {
+               Write("Nữ");
+           }
+           else
+           {
+               Write("Nam");
+           }
+
+        </td>
+        <td>@item.tbl_khoahoc.Tenkhoa</td>
+        <td>@item.tbl_chuyennganh.Tencn</td>
+        <td>@item.Email</td>
+        <td>@item.Dienthoai</td>
+        <td>@item.Diachi</td>
+    </tr>
+    }
+
+</table>
